@@ -1,0 +1,29 @@
+.main {
+    margin-top: 80px;
+    margin-left: 80px;
+}
+
+.docItem {
+    
+}
+
+.btns {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btns button {
+    width: 140px;
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+.export {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
