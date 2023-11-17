@@ -9,7 +9,7 @@ spring:
   redis:
     host: 172.19.0.2
     port: 6379
-    password: 123456
+    password: luckysheetRedis33
     timeout: 10000ms
     lettuce:
       pool:
@@ -25,7 +25,7 @@ db:
       url: jdbc:postgresql://172.19.0.3:5432/luckysheetdb?useSSL=false
       driverClassName: org.postgresql.Driver
       username: postgres
-      password: 123456
+      password: luckysheetDB33
       # 初始化大小，最小，最大
       initial-size: 8
       min-idle: 1

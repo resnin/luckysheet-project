@@ -5,14 +5,14 @@ import '../App.css'
 const Main = () => {
     const [docs, setDocs] = useState([])
 
-    const [isFirstLoading, setIsFirstLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const fetchDocIds = async () => {
-        setIsFirstLoading(true)
+        setIsLoading(true)
         const response = await fetch(window.location.origin + '/luckysheet/api/getAll')
         const data = await response.json()
         setDocs(data)
-        setIsFirstLoading(false)
+        setIsLoading(false)
     }
 
     useEffect(() => {
@@ -25,6 +25,7 @@ const Main = () => {
         if (!e.target.files) return;
 
         try {
+            setIsLoading(true)
             let formData = new FormData();
             formData.append("file", e.target.files[0]);
 
@@ -37,6 +38,7 @@ const Main = () => {
             const data = await response.json()
             navigate(`/${data.data.docCode}`)
         } catch(e) {
+            setIsLoading(false)
             alert('Ошибка!')
         }
     }
@@ -51,7 +53,7 @@ const Main = () => {
         }
     }
 
-    if (isFirstLoading) return <div className="main">Загрузка</div>
+    if (isLoading) return <div className="main">Загрузка</div>
 
     return (
         <div className='main'>
@@ -61,7 +63,7 @@ const Main = () => {
             </div>
             {!docs.length && <div>Нет созданных документов</div>}
 
-            {docs.map((item, index) => 
+            {docs.sort().map((item, index) => 
                 <div className="docItem" key={index}>
                     <Link to={`/${item}`}>Документ {index + 1}</Link>      
                 </div>
